@@ -10,7 +10,14 @@ export default function Donations() {
     if (getDonationsAPI.error) return "Error!";
     if (getDonationsAPI.loading) return "Loading!";
 
-    const [, email, name, donation, quantity, address, city, contactNumber, additionalInformation] =
-        getDonationsAPI.data;
-    return <div>donation user email: {email} </div>;
+    const donations = getDonationsAPI.data;
+    return (
+        <div>
+            {donations.map((donation) => {
+                const [, email, name, donationDetail, quantity, address, city, contactNumber, additionalInformation] =
+                    donation;
+                return <div> donation user email {email}</div>;
+            })}
+        </div>
+    );
 }

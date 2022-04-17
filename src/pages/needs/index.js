@@ -10,6 +10,13 @@ export default function Donations() {
     if (getNeedsAPI.error) return "Error!";
     if (getNeedsAPI.loading) return "Loading!";
 
-    const [, email, name, needs, quantity, address, city, contactNumber, additionalInformation] = getNeedsAPI.data;
-    return <div>donation user email: {email} </div>;
+    const needs = getNeedsAPI.data;
+    return (
+        <div>
+            {needs.map((need) => {
+                const [, email, name, needDetail, quantity, address, city, contactNumber, additionalInformation] = need;
+                return <div> need user email {email}</div>;
+            })}
+        </div>
+    );
 }
